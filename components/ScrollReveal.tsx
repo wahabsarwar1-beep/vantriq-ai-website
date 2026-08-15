@@ -21,7 +21,7 @@ export default function ScrollReveal() {
     const show = (el: HTMLElement) => {
       if (el.classList.contains("in")) return;
       const sibs = Array.from(el.parentElement?.children ?? []);
-      el.style.animationDelay = Math.min(sibs.indexOf(el), 5) * 70 + "ms";
+      el.style.animationDelay = Math.min(sibs.indexOf(el), 6) * 85 + "ms";
       el.classList.add("in");
     };
 

@@ -7,10 +7,10 @@ type LogoProps = {
 
 export default function Logo({ size = 40, fontSize = 24 }: LogoProps) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "-0.01em" }}>
       <Image
         src="/vantriq-logo.png"
-        alt="Vantriq AI"
+        alt=""
         width={size}
         height={size}
         style={{
@@ -22,13 +22,15 @@ export default function Logo({ size = 40, fontSize = 24 }: LogoProps) {
         }}
       />
       <span style={{ fontFamily: "var(--font-heading)", fontWeight: 500, fontSize }}>
-        Vantriq{" "}
+        Vantriq
         <span
           style={{
             color: "var(--color-logo-gold)",
-            textDecoration: "underline",
-            textDecorationColor: "var(--color-logo-gold)",
-            textUnderlineOffset: "4px",
+            fontSize: "0.78em",
+            letterSpacing: "0.02em",
+            borderBottom: "2px solid var(--color-logo-gold)",
+            paddingBottom: 2,
+            marginLeft: -1,
           }}
         >
           AI
