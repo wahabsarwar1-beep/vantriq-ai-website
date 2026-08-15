@@ -16,6 +16,7 @@ export default function Contact() {
     <>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
         <section
+          className="stack-mobile"
           style={{
             padding: "84px 0 56px",
             display: "grid",

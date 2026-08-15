@@ -164,6 +164,7 @@ export default function Home() {
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
         <section
+          className="stack-mobile"
           style={{
             padding: "98px 0 28px",
             display: "grid",

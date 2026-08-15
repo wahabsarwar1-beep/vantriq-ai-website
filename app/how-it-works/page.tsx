@@ -91,6 +91,7 @@ export default function HowItWorks() {
           {STEPS.map((step, i) => (
             <div key={step.n}>
               <div
+                className="stack-mobile"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "minmax(64px,120px) minmax(0,340px) minmax(0,1fr)",
