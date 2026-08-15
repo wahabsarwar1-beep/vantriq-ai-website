@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 import { NAV_LINKS } from "@/lib/nav-links";
 
 export default function Footer() {
@@ -22,7 +23,10 @@ export default function Footer() {
         color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
       }}
     >
-      <span>Vantriq AI · Intelligent automation for business · Islamabad, Pakistan</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <Logo size={28} fontSize={16} />
+        <span>Intelligent automation for business · Islamabad, Pakistan</span>
+      </div>
       <span style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
         {NAV_LINKS.filter((link) => link.href !== pathname).map((link) => (
           <Link key={link.href} href={link.href}>

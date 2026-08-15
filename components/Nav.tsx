@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 import { NAV_LINKS } from "@/lib/nav-links";
 import { waLink } from "@/lib/whatsapp";
 
@@ -30,26 +30,8 @@ export default function Nav() {
         backdropFilter: "blur(10px)",
       }}
     >
-      <Link
-        href="/"
-        className="nav-brand"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          marginRight: "auto",
-          fontSize: 24,
-          color: "inherit",
-        }}
-      >
-        <Image
-          src="/vantriq-logo.png"
-          alt="Vantriq AI"
-          width={40}
-          height={40}
-          style={{ width: 40, height: 40, flex: "none", display: "block", borderRadius: 9 }}
-        />
-        Vantriq AI
+      <Link href="/" className="nav-brand" style={{ color: "inherit" }}>
+        <Logo size={40} fontSize={24} />
       </Link>
 
       <div
