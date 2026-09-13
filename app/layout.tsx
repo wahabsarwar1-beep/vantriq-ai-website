@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import BackToTop from "@/components/BackToTop";
 import ChatWidget from "@/components/ChatWidget";
+import "@n8n/chat/style.css";
 import "./globals.css";
 
 const sora = Sora({
