@@ -1,29 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const INDUSTRIES = [
-  "E-commerce & Retail",
-  "Real Estate",
-  "Healthcare",
-  "Education",
-  "Hospitality",
-  "Legal & Consulting",
-  "Travel & Tourism",
-  "HR & Operations",
-  "Marketing Agencies",
-  "Logistics",
-  "Something else",
-];
-
-const labelStyle = {
-  display: "grid",
-  gap: 6,
-  fontSize: 13,
-  letterSpacing: "0.04em",
-  textTransform: "uppercase" as const,
-  color: "color-mix(in srgb, var(--color-text) 62%, transparent)",
-};
+import Magnetic from "@/components/Magnetic";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -34,92 +12,41 @@ export default function ContactForm() {
         e.preventDefault();
         setSent(true);
       }}
+      data-anim=""
       style={{
-        background: "var(--color-surface)",
-        borderRadius: "var(--radius-lg)",
-        boxShadow: "var(--shadow-md)",
-        padding: "32px 30px 34px",
+        border: "1px solid var(--color-divider)",
+        padding: "clamp(24px,3vw,36px)",
         display: "grid",
         gap: 18,
+        background: "var(--color-bg)",
       }}
     >
-      <h2 style={{ fontSize: 20, lineHeight: 1.25, margin: 0 }}>Send a brief</h2>
-      <p
-        style={{
-          fontSize: 14.5,
-          lineHeight: "24px",
-          color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
-          margin: 0,
-        }}
-      >
-        Tell us how customers message you today and we&rsquo;ll come back with a scope.
+      <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--color-accent)", margin: 0 }}>
+        Send a brief
       </p>
-      <label className="field" style={labelStyle}>
-        Name
-        <input
-          className="input"
-          name="name"
-          required
-          placeholder="Your name"
-          style={{ textTransform: "none", letterSpacing: "normal" }}
-        />
-      </label>
-      <label className="field" style={labelStyle}>
-        Business
-        <input
-          className="input"
-          name="business"
-          placeholder="Company name"
-          style={{ textTransform: "none", letterSpacing: "normal" }}
-        />
-      </label>
-      <label className="field" style={labelStyle}>
-        WhatsApp or email
-        <input
-          className="input"
-          name="contact"
-          required
-          placeholder="03XX XXXXXXX or you@company.com"
-          style={{ textTransform: "none", letterSpacing: "normal" }}
-        />
-      </label>
-      <label className="field" style={labelStyle}>
-        Industry
-        <select
-          className="input"
-          name="industry"
-          style={{ textTransform: "none", letterSpacing: "normal", appearance: "none" }}
-        >
-          {INDUSTRIES.map((name) => (
-            <option key={name}>{name}</option>
-          ))}
-        </select>
-      </label>
-      <label className="field" style={labelStyle}>
-        What should the agent handle?
-        <textarea
-          className="input"
-          name="notes"
-          rows={4}
-          placeholder="Booking, catalogue questions, order tracking…"
-          style={{
-            textTransform: "none",
-            letterSpacing: "normal",
-            resize: "vertical",
-            lineHeight: "24px",
-            paddingTop: 10,
-          }}
-        />
-      </label>
-      <button
-        className="btn btn-primary"
-        type="submit"
-        style={{ minHeight: 38, justifySelf: "start", paddingInline: 16 }}
-      >
-        Send brief
-      </button>
+      <div className="field">
+        <label>Name</label>
+        <input className="input" name="name" required placeholder="Your name" style={{ minHeight: 44 }} />
+      </div>
+      <div className="field">
+        <label>Business</label>
+        <input className="input" name="business" placeholder="Company name" style={{ minHeight: 44 }} />
+      </div>
+      <div className="field">
+        <label>WhatsApp number</label>
+        <input className="input" name="whatsapp" required placeholder="+92 341 1120049" style={{ minHeight: 44 }} />
+      </div>
+      <div className="field">
+        <label>What should the agent handle?</label>
+        <textarea className="input" name="notes" placeholder="Bookings, catalogue questions, lead qualification…" style={{ minHeight: 110 }} />
+      </div>
+      <Magnetic>
+        <button type="submit" className="btn btn-primary" style={{ minHeight: 48, paddingInline: 20, justifyContent: "center" }}>
+          Send the brief
+        </button>
+      </Magnetic>
       {sent && (
-        <p style={{ fontSize: 14.5, lineHeight: "24px", color: "var(--color-accent-300)", margin: 0 }}>
+        <p style={{ fontSize: 14.5, lineHeight: "24px", color: "var(--color-accent-700)", margin: 0 }}>
           Thanks — we&rsquo;ll reply within one business day.
         </p>
       )}

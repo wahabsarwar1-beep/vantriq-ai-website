@@ -1,41 +1,18 @@
 import Image from "next/image";
 
 type LogoProps = {
-  size?: number;
-  fontSize?: number;
+  height?: number;
 };
 
-export default function Logo({ size = 40, fontSize = 24 }: LogoProps) {
+export default function Logo({ height = 46 }: LogoProps) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "-0.01em" }}>
-      <Image
-        src="/vantriq-logo.png"
-        alt=""
-        width={size}
-        height={size}
-        style={{
-          width: size,
-          height: size,
-          flex: "none",
-          display: "block",
-          borderRadius: size * 0.225,
-        }}
-      />
-      <span style={{ fontFamily: "var(--font-heading)", fontWeight: 500, fontSize }}>
-        Vantriq
-        <span
-          style={{
-            color: "var(--color-logo-gold)",
-            fontSize: "0.78em",
-            letterSpacing: "0.02em",
-            borderBottom: "2px solid var(--color-logo-gold)",
-            paddingBottom: 2,
-            marginLeft: -1,
-          }}
-        >
-          AI
-        </span>
-      </span>
-    </span>
+    <Image
+      src="/ventriqai-lockup-cobalt.svg"
+      alt="VantriqAI"
+      width={height * 4.2}
+      height={height}
+      priority
+      style={{ height, width: "auto", flex: "none", display: "block" }}
+    />
   );
 }

@@ -1,88 +1,68 @@
 import Kicker from "@/components/Kicker";
-import Footer from "@/components/Footer";
+import LineReveal from "@/components/LineReveal";
+import Magnetic from "@/components/Magnetic";
 import ContactForm from "@/components/ContactForm";
 import { waLink } from "@/lib/whatsapp";
 
 const infoLabel = {
-  fontSize: 13,
-  letterSpacing: "0.06em",
+  fontFamily: "var(--font-heading)",
+  fontWeight: 800,
+  fontSize: 11,
+  letterSpacing: "0.14em",
   textTransform: "uppercase" as const,
   color: "color-mix(in srgb, var(--color-text) 62%, transparent)",
-  margin: "0 0 6px",
+  margin: "0 0 8px",
 };
+
+const INFO_ROWS = [
+  { label: "Where we are", body: "Distributed team, global hours — local support wherever you are." },
+  {
+    label: "Who you’ll speak to",
+    body: (
+      <>
+        The Vantriq<span style={{ color: "var(--color-accent)" }}>AI</span> team — 14+ years experience across enterprise and government collaborations.
+      </>
+    ),
+  },
+  { label: "What happens next", body: "A fifteen-minute discovery call, then a fixed setup fee and monthly plan in writing." },
+];
 
 export default function Contact() {
   return (
     <>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-        <section
-          className="stack-mobile"
-          style={{
-            padding: "84px 0 56px",
-            display: "grid",
-            gridTemplateColumns: "minmax(0,6fr) minmax(0,6fr)",
-            gap: "56px clamp(32px,6vw,96px)",
-            alignItems: "start",
-          }}
-        >
-          <div>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px,5vw,64px)" }}>
+        <section className="stack-mobile" style={{ padding: "clamp(34px,4.4vw,58px) 0 clamp(40px,5.2vw,68px)", position: "relative", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(340px,100%),1fr))", gap: "clamp(40px,6vw,88px)", alignItems: "start" }}>
+          <div aria-hidden="true" data-hero-texture="" style={{ position: "absolute", top: 0, bottom: 0, left: "50%", width: "calc(100vw + 24px)", marginLeft: "calc(-50vw - 12px)", zIndex: 0, pointerEvents: "none" }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
             <Kicker label="Contact" />
-            <h1
-              style={{
-                fontSize: "clamp(36px,4.6vw,56px)",
-                lineHeight: 1.11,
-                letterSpacing: "-0.015em",
-                margin: "0 0 0 -0.06em",
-                maxWidth: "16ch",
-                color: "var(--color-hero)",
-              }}
-            >
-              Let&rsquo;s talk.
+            <h1 style={{ fontSize: "clamp(36px,5.6vw,72px)", lineHeight: 0.96, letterSpacing: "-0.03em", margin: 0 }}>
+              <LineReveal>
+                Let&rsquo;s <span style={{ color: "var(--color-accent)" }}>talk.</span>
+              </LineReveal>
             </h1>
-            <p style={{ fontSize: 17, lineHeight: "28px", maxWidth: "46ch", margin: "28px 0 0" }}>
-              The fastest way to reach us is the same channel we build on. Message us and see the
-              agent answer.
+            <p data-anim="" style={{ fontSize: 18, lineHeight: "30px", maxWidth: "44ch", margin: "28px 0 0" }}>
+              The fastest way to reach us is the same channel we build on. Message us and see the agent answer.
             </p>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
-              <a
-                className="btn btn-primary"
-                href={waLink()}
-                target="_blank"
-                rel="noopener"
-                style={{ minHeight: 38, paddingInline: 16 }}
-              >
-                Message us on WhatsApp
-              </a>
+            <div data-anim="" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
+              <Magnetic>
+                <a className="btn btn-primary" href={waLink()} target="_blank" rel="noopener" style={{ minHeight: 52, paddingInline: 22, fontSize: 15, justifyContent: "center" }}>
+                  Message us on WhatsApp
+                </a>
+              </Magnetic>
             </div>
-            <div style={{ marginTop: 48, display: "grid", gap: 22, maxWidth: "44ch" }}>
-              <div>
-                <p style={infoLabel}>Where we are</p>
-                <p style={{ fontSize: 15.5, lineHeight: "26px", margin: 0 }}>
-                  Islamabad, Pakistan — local hours, local support, PKR billing.
-                </p>
-              </div>
-              <div>
-                <p style={infoLabel}>Who you&rsquo;ll speak to</p>
-                <p style={{ fontSize: 15.5, lineHeight: "26px", margin: 0 }}>
-                  Wahab Sarwar and the Vantriq AI team — 14+ years across enterprise and government
-                  accounts.
-                </p>
-              </div>
-              <div>
-                <p style={infoLabel}>What happens next</p>
-                <p style={{ fontSize: 15.5, lineHeight: "26px", margin: 0 }}>
-                  A fifteen-minute discovery call, then a fixed setup fee and monthly plan in writing.{" "}
-                  <a href="/how-it-works">See the five steps</a>.
-                </p>
-              </div>
+            <div style={{ marginTop: "clamp(36px,5vw,60px)", display: "grid", maxWidth: "46ch" }}>
+              {INFO_ROWS.map((r, i) => (
+                <div key={r.label} data-anim="" className="hover-tint" style={{ borderTop: "1px solid var(--color-divider)", borderBottom: i === INFO_ROWS.length - 1 ? "1px solid var(--color-divider)" : undefined, padding: "18px 0" }}>
+                  <p style={infoLabel}>{r.label}</p>
+                  <p style={{ fontSize: 15.5, lineHeight: "26px", margin: 0 }}>{r.body}</p>
+                </div>
+              ))}
             </div>
           </div>
 
           <ContactForm />
         </section>
       </div>
-
-      <Footer />
     </>
   );
 }

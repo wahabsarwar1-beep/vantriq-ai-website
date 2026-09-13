@@ -1,39 +1,43 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Logo from "@/components/Logo";
+import Wordmark from "@/components/Wordmark";
 import { NAV_LINKS } from "@/lib/nav-links";
+import { waLink, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export default function Footer() {
-  const pathname = usePathname();
-
   return (
-    <footer
-      style={{
-        maxWidth: 1200,
-        margin: "0 auto",
-        padding: "56px clamp(20px,5vw,72px)",
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px 40px",
-        justifyContent: "space-between",
-        fontSize: 13,
-        lineHeight: "28px",
-        color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <Logo size={28} fontSize={16} />
-        <span>Intelligent automation for business · Islamabad, Pakistan</span>
+    <footer style={{ borderTop: "1px solid var(--color-divider)" }}>
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "36px clamp(20px,5vw,64px)",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "16px 40px",
+          justifyContent: "space-between",
+          fontSize: 12.5,
+          letterSpacing: "0.04em",
+          textTransform: "uppercase",
+          color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
+        }}
+      >
+        <span>
+          <span style={{ textTransform: "none", fontFamily: "var(--font-heading)", fontWeight: 800, letterSpacing: "-0.01em" }}>
+            <Wordmark />
+          </span>{" "}
+          · Intelligent automation for business ·{" "}
+          <a href={waLink()} target="_blank" rel="noopener" style={{ textTransform: "none" }}>
+            {WHATSAPP_DISPLAY}
+          </a>
+        </span>
+        <span style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </span>
       </div>
-      <span style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-        {NAV_LINKS.filter((link) => link.href !== pathname).map((link) => (
-          <Link key={link.href} href={link.href}>
-            {link.label}
-          </Link>
-        ))}
-      </span>
     </footer>
   );
 }

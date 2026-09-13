@@ -1,28 +1,39 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Sora, Manrope } from "next/font/google";
 import Nav from "@/components/Nav";
-import ScrollReveal from "@/components/ScrollReveal";
+import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import BackToTop from "@/components/BackToTop";
+import ChatWidget from "@/components/ChatWidget";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Vantriq AI — WhatsApp AI agents for Pakistani SMEs",
-  description:
-    "AI agents that reply, qualify, and book — 24 hours a day. On WhatsApp, Instagram, and your website, in seconds, at any volume.",
+  title: "VantriqAI — Where Business Meets Intelligence",
+  description: "VantriqAI — Where Business Meets Intelligence",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${sora.variable} ${manrope.variable}`}>
       <body>
+        <CustomCursor />
+        <BackToTop />
         <Nav />
         {children}
-        <ScrollReveal />
+        <ChatWidget />
+        <Footer />
       </body>
     </html>
   );

@@ -1,426 +1,209 @@
+import PageHero from "@/components/PageHero";
+import HeroOrbitCard from "@/components/HeroOrbitCard";
+import LineReveal from "@/components/LineReveal";
 import Kicker from "@/components/Kicker";
-import Divider from "@/components/Divider";
-import CtaBand from "@/components/CtaBand";
-import Footer from "@/components/Footer";
+import PosterCTA from "@/components/PosterCTA";
+import Marquee from "@/components/Marquee";
+import SpotlightGrid, { SpotlightItem } from "@/components/SpotlightGrid";
+import { STEPS, BMK, COMPARISON, HOOD } from "@/lib/content";
 
 const bodyMuted = { color: "color-mix(in srgb, var(--color-text) 78%, transparent)" };
 const mutedLabel = { color: "color-mix(in srgb, var(--color-text) 62%, transparent)" };
-const vantriqCellStyle = {
-  color: "var(--color-accent-100)",
-  background: "color-mix(in srgb, var(--color-accent-900) 45%, transparent)",
-};
 
-const STEPS = [
-  {
-    n: "01",
-    title: "Engage",
-    body: "Replies instantly on WhatsApp, Instagram, or your website — any hour, any volume, no queue. Natural language, not a menu tree: customers ask the way they actually speak, in English or Urdu, and get an answer in seconds.",
-  },
-  {
-    n: "02",
-    title: "Execute",
-    body: "Books the appointment, shares the catalogue, checks availability, logs the lead in your CRM. Actions actually happen — the agent is connected to your calendar, inventory, and records, not just talking about them.",
-  },
-  {
-    n: "03",
-    title: "Escalate",
-    body: "Hands to your team the moment judgement is needed — with the full conversation attached. Nothing is lost in the handover, and your staff spend their hours on the conversations that need a person.",
-  },
+const RESPONSE_WINDOW = [
+  { title: "Inside 1 minute", src: "Velocify", pct: 96, body: "conversion lift on first contact", stat: "+391%" },
+  { title: "Inside 5 minutes", src: "MIT / InsideSales.com", pct: 74, body: "more likely to qualify than at 30 minutes", stat: "21×" },
+  { title: "Inside 1 hour", src: "Harvard Business Review", pct: 52, body: "more likely to qualify than after 24 hours", stat: "60×" },
+  { title: "After 24 hours", src: "Harvard Business Review", pct: 14, body: "of firms never reply at all", stat: "23%" },
 ];
 
-const COMPARISON = [
-  ["24/7 cost", "Two to three shifts of salary", "A low monthly fee", "Included in your plan"],
-  ["Understanding", "Full — but only on shift", "Menu-driven only", "Natural language, any hour"],
-  ["Gets things done", "Manually, yes", "Static answers only", "Books, checks stock, updates CRM"],
-  ["The unexpected", "Handles it — until hour eight", "Breaks or loops", "Handles new questions gracefully"],
-  ["Consistency", "Varies with mood and fatigue", "Consistent but rigid", "Consistent and flexible"],
-  ["Long run", "Learns, then eventually leaves", "Frozen until reprogrammed", "Tuned monthly, stays"],
-];
-
-const HOOD = [
-  {
-    n: "01",
-    title: "Smart AI models",
-    body: "The reasoning behind every reply, matched to your business's complexity and data sensitivity.",
-  },
-  {
-    n: "02",
-    title: "Reliable automation",
-    body: "Connects to your calendar, CRM, and inventory so actions actually happen — not just chat.",
-  },
-  {
-    n: "03",
-    title: "Secure data handling",
-    body: "From simple catalogues to enterprise databases, including fully private on-premise options.",
-  },
-  {
-    n: "04",
-    title: "Where customers already are",
-    body: "WhatsApp, Instagram, Facebook — no app downloads, no new habits to teach.",
-  },
-];
-
-const ONBOARDING = [
-  "Discovery call — we map your customer workflow and where AI adds the most value",
-  "Proposal & scope — a fixed setup fee and monthly plan, in writing, no surprises",
-  "Build & configure — your agent trained on your catalogue, FAQs, and booking rules",
-  "Test & launch — we run it alongside your team before it goes fully live",
-  "Ongoing management — monthly tuning, reporting, and support included in your plan",
-];
+const BENCHMARK_SOURCES = ["MIT / InsideSales.com", "Harvard Business Review", "SuperOffice", "Salesforce", "HubSpot", "Velocify", "Meta", "Mobilesquared"];
 
 export default function HowItWorks() {
   return (
     <>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-        <section
-          className="stack-mobile"
-          style={{
-            padding: "84px 0 64px",
-            display: "grid",
-            gridTemplateColumns: "minmax(0,7fr) minmax(0,5fr)",
-            gap: "48px clamp(32px,6vw,88px)",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <Kicker label="How it works" />
-            <h1
-              style={{
-                fontSize: "clamp(36px,5vw,64px)",
-                lineHeight: 1.11,
-                letterSpacing: "-0.015em",
-                margin: "0 0 0 -0.06em",
-                maxWidth: "20ch",
-                color: "var(--color-hero)",
-              }}
-            >
-              Three things your agent does, on repeat
-            </h1>
-            <p style={{ fontSize: 17, lineHeight: "28px", maxWidth: "48ch", margin: "32px 0 0" }}>
-              One AI agent, configured around how your business actually runs.
-            </p>
-          </div>
+      <PageHero
+        kicker="How it works"
+        heading={
+          <>
+            <LineReveal>Three things your agent</LineReveal>
+            <LineReveal>
+              does, <span style={{ color: "var(--color-accent)" }}>on repeat</span>
+            </LineReveal>
+          </>
+        }
+        body="One AI agent, configured around how your business actually runs."
+        maxWidthCh="18ch"
+        orbit={
+          <HeroOrbitCard label="On repeat">
+            <div style={{ position: "relative", display: "flex", gap: "10%", width: "70%" }}>
+              {[0.4, 0.8].map((d) => (
+                <span key={d} style={{ width: "16%", aspectRatio: 1, borderRadius: "50%", background: "var(--color-surface)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}>
+                  <svg width="70%" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth={2.6} strokeLinecap="round" style={{ animation: "checkpop 2.4s ease-in-out infinite", animationDelay: `${d}s` }}>
+                    <path d="M4 12l5 5L20 6" />
+                  </svg>
+                </span>
+              ))}
+            </div>
+          </HeroOrbitCard>
+        }
+      />
 
-          <div
-            style={{
-              background: "var(--color-surface)",
-              borderRadius: "var(--radius-lg)",
-              boxShadow: "var(--shadow-lg)",
-              padding: "22px 20px",
-              display: "grid",
-              gap: 12,
-              justifyItems: "start",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: "auto -40px -70px auto",
-                width: 220,
-                height: 220,
-                borderRadius: "50%",
-                background:
-                  "radial-gradient(circle, color-mix(in srgb, var(--color-accent-900) 90%, transparent), transparent 70%)",
-              }}
-            />
-            <span
-              style={{
-                fontSize: 13,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
-                position: "relative",
-              }}
-            >
-              Today · 11:42 pm
-            </span>
-            <span
-              style={{
-                position: "relative",
-                maxWidth: "82%",
-                background: "var(--color-neutral-700)",
-                borderRadius: "14px 14px 14px 4px",
-                padding: "11px 15px",
-                fontSize: 15,
-                lineHeight: "23px",
-              }}
-            >
-              Do you have the beige one in medium?
-            </span>
-            <span
-              style={{
-                position: "relative",
-                maxWidth: "86%",
-                alignSelf: "end",
-                justifySelf: "end",
-                background: "color-mix(in srgb, var(--color-accent-800) 85%, transparent)",
-                borderRadius: "14px 14px 4px 14px",
-                padding: "11px 15px",
-                fontSize: 15,
-                lineHeight: "23px",
-                color: "var(--color-accent-100)",
-              }}
-            >
-              Yes — two left in medium. Want me to reserve one and send the checkout link?
-            </span>
-            <span
-              style={{
-                position: "relative",
-                maxWidth: "82%",
-                background: "var(--color-neutral-700)",
-                borderRadius: "14px 14px 14px 4px",
-                padding: "11px 15px",
-                fontSize: 15,
-                lineHeight: "23px",
-              }}
-            >
-              Please do
-            </span>
-            <span
-              style={{
-                position: "relative",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                fontSize: 13,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                color: "var(--color-accent-300)",
-              }}
-            >
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--color-accent)", flex: "none" }} />
-              Reserved · link sent · 4 seconds
-            </span>
-          </div>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px,5vw,64px)" }}>
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          {STEPS.map((s) => (
+            <div key={s.n} data-anim="" className="step-row-hover" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(220px,100%),1fr))", gap: "16px clamp(20px,4vw,64px)", alignItems: "start", borderTop: "1px solid var(--color-divider)", padding: "clamp(28px,3.5vw,44px) 0" }}>
+              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 14, letterSpacing: "0.1em", color: "var(--color-accent)", margin: 0 }}>{s.n}</p>
+              <h2 style={{ fontSize: "clamp(22px,2.6vw,30px)", lineHeight: 1.05, letterSpacing: "-0.02em", margin: 0 }}>{s.title}</h2>
+              <p style={{ fontSize: 16, lineHeight: "28px", margin: 0, maxWidth: "52ch", ...bodyMuted }}>{s.body}</p>
+            </div>
+          ))}
+          <div data-anim="rule" style={{ height: 1, background: "var(--color-divider)" }} />
         </section>
 
-        <section style={{ padding: "0 0 84px" }} aria-label="How the agent works, in three steps">
-          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 0 }}>
-            {STEPS.map((step, i) => (
-              <li key={step.n} style={{ display: "contents" }}>
-                <div
-                  className="stack-mobile"
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          <div style={{ display: "grid", gap: 18, borderTop: "1px solid var(--color-divider)", paddingTop: 22 }}>
+            <Kicker label="The response window" marginBottom="0" />
+            <h2 data-anim="" style={{ fontSize: "clamp(24px,3vw,42px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: 0, maxWidth: "24ch" }}>Every minute you wait costs you the odds</h2>
+            <p data-anim="" style={{ fontSize: 16, lineHeight: "28px", margin: "0 0 12px", maxWidth: "52ch", ...bodyMuted }}>The agent replies inside the top band, every time, at any hour. Where your business lands today decides the rest.</p>
+
+            <SpotlightGrid gridStyle={{ display: "grid", gap: 18 }}>
+              {RESPONSE_WINDOW.map((item, i) => (
+                <SpotlightItem
+                  key={item.title}
+                  index={i}
                   style={{
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-divider)",
+                    borderRadius: 28,
+                    boxShadow: "var(--shadow-sm)",
+                    padding: "22px clamp(20px,2.4vw,30px)",
                     display: "grid",
-                    gridTemplateColumns: "minmax(64px,120px) minmax(0,340px) minmax(0,1fr)",
-                    gap: "20px clamp(24px,4vw,72px)",
-                    alignItems: "start",
-                    padding: "46px 0",
+                    gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))",
+                    gap: "14px clamp(20px,3vw,44px)",
+                    alignItems: "center",
                   }}
                 >
-                  <p
-                    aria-hidden="true"
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 500,
-                      fontSize: "clamp(40px,5vw,64px)",
-                      lineHeight: 0.9,
-                      color: "color-mix(in srgb, var(--color-accent) 26%, transparent)",
-                      margin: 0,
-                      fontFeatureSettings: "'tnum' 1",
-                      letterSpacing: "-0.03em",
-                    }}
-                  >
-                    {step.n}
-                  </p>
-                  <h2 style={{ fontSize: 30, lineHeight: 1.15, margin: 0, letterSpacing: "-0.01em" }}>
-                    <span style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clipPath: "inset(50%)" }}>
-                      Step {i + 1}:{" "}
-                    </span>
-                    {step.title}
-                  </h2>
-                  <p style={{ fontSize: 15.5, lineHeight: "28px", margin: 0, maxWidth: "52ch", ...bodyMuted }}>
-                    {step.body}
-                  </p>
-                </div>
-                {i < STEPS.length - 1 && (
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      height: 1,
-                      background:
-                        "linear-gradient(to right, transparent, var(--color-neutral-700) 48px calc(100% - 48px), transparent)",
-                    }}
-                  />
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <Divider />
-
-        <section style={{ padding: "84px 0" }}>
-          <Kicker label="The difference" />
-          <h2
-            style={{
-              fontSize: "clamp(28px,3.4vw,40px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.012em",
-              margin: "0 0 12px",
-            }}
-          >
-            Not a chatbot. Not another hire.
-          </h2>
-          <p style={{ fontSize: 15.5, lineHeight: "28px", margin: "0 0 36px", maxWidth: "54ch", ...bodyMuted }}>
-            Compared honestly against the two things you&rsquo;re probably weighing instead.
-          </p>
-          <div style={{ overflowX: "auto" }}>
-            <table className="table" style={{ minWidth: 760 }}>
-              <thead>
-                <tr>
-                  <th style={{ width: "22%" }}></th>
-                  <th>Hiring staff</th>
-                  <th>A generic chatbot</th>
-                  <th style={{ ...vantriqCellStyle, background: "color-mix(in srgb, var(--color-accent-900) 70%, transparent)" }}>
-                    Vantriq AI
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON.map((row) => (
-                  <tr key={row[0]}>
-                    <td style={mutedLabel}>{row[0]}</td>
-                    <td>{row[1]}</td>
-                    <td>{row[2]}</td>
-                    <td style={vantriqCellStyle}>{row[3]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  <div>
+                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 17, letterSpacing: "-0.01em", margin: 0 }}>{item.title}</p>
+                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 10, lineHeight: "16px", letterSpacing: "0.1em", textTransform: "uppercase", margin: "8px 0 0", color: "color-mix(in srgb, var(--color-text) 50%, transparent)" }}>{item.src}</p>
+                  </div>
+                  <div>
+                    <div style={{ height: 10, borderRadius: 999, background: "var(--color-neutral-200)", overflow: "hidden" }}>
+                      <span data-bar={item.pct} style={{ display: "block", "--bar": `${item.pct}%`, width: `${item.pct}%`, height: "100%", borderRadius: 999, background: "var(--color-accent)" } as React.CSSProperties} />
+                    </div>
+                    <p style={{ fontSize: 14, lineHeight: "22px", margin: "12px 0 0", ...bodyMuted }}>{item.body}</p>
+                  </div>
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(26px,3vw,40px)", lineHeight: 1, letterSpacing: "-0.03em", margin: 0, color: "var(--color-accent-700)", justifySelf: "end" }}>{item.stat}</p>
+                </SpotlightItem>
+              ))}
+            </SpotlightGrid>
           </div>
-          <p
-            style={{
-              fontSize: 13,
-              lineHeight: "28px",
-              color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
-              margin: "20px 0 0",
-            }}
-          >
-            Cost comparison based on typical Pakistan market shift-coverage rates.{" "}
-            <a href="/pricing">Request a quote</a> for your figures.
-          </p>
-        </section>
-
-        <Divider />
-
-        <section style={{ padding: "84px 0" }}>
-          <Kicker label="Under the hood" />
-          <h2
-            style={{
-              fontSize: "clamp(28px,3.4vw,40px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.012em",
-              margin: "0 0 12px",
-              maxWidth: "26ch",
-            }}
-          >
-            Enterprise-grade, without the enterprise headache
-          </h2>
-          <p style={{ fontSize: 15.5, lineHeight: "28px", margin: "0 0 40px", maxWidth: "54ch", ...bodyMuted }}>
-            You never touch the infrastructure — we run, monitor, and tune all of it.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 16 }}>
-            {HOOD.map((item) => (
-              <div key={item.n} className="card elev-sm" style={{ padding: "26px 24px 30px", gap: 10 }}>
-                <span className="card-kicker">{item.n}</span>
-                <h3 className="card-title" style={{ fontSize: 19 }}>
-                  {item.title}
-                </h3>
-                <p className="card-body" style={{ fontSize: 15, lineHeight: "26px", margin: 0, ...bodyMuted }}>
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p
-            style={{
-              fontSize: 13,
-              lineHeight: "28px",
-              color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
-              margin: "20px 0 0",
-            }}
-          >
-            Private, self-hosted deployment available for strict data-residency requirements.
-          </p>
-        </section>
-
-        <Divider />
-
-        <section style={{ padding: "84px 0" }}>
-          <Kicker label="Getting started" />
-          <h2
-            style={{
-              fontSize: "clamp(28px,3.4vw,40px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.012em",
-              margin: "0 0 44px",
-            }}
-          >
-            How we get started
-          </h2>
-          <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 0 }}>
-            {ONBOARDING.map((step, i) => (
-              <li
-                key={step}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "40px minmax(0,1fr)",
-                  gap: 22,
-                  padding: i < ONBOARDING.length - 1 ? "0 0 30px" : 0,
-                }}
-              >
-                <span style={{ display: "grid", justifyItems: "center", gap: 8 }}>
-                  <span
-                    style={{
-                      width: 34,
-                      height: 34,
-                      flex: "none",
-                      borderRadius: "50%",
-                      border: "1px solid var(--color-accent)",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 500,
-                      fontSize: 15,
-                      color: "var(--color-accent)",
-                      background: "var(--color-bg)",
-                      fontFeatureSettings: "'tnum' 1",
-                    }}
-                  >
-                    {i + 1}
-                  </span>
-                  {i < ONBOARDING.length - 1 && (
-                    <span
-                      style={{
-                        width: 1,
-                        flex: 1,
-                        minHeight: 26,
-                        background: "linear-gradient(to bottom, var(--color-accent-800), transparent)",
-                      }}
-                    />
-                  )}
-                </span>
-                <span style={{ fontSize: 16.5, lineHeight: "28px", paddingTop: 3, maxWidth: "60ch" }}>{step}</span>
-              </li>
-            ))}
-          </ol>
         </section>
       </div>
 
-      <CtaBand
-        heading="Start with a discovery call."
+      <section style={{ borderTop: "1px solid var(--color-divider)", borderBottom: "1px solid var(--color-divider)", padding: "clamp(20px,2.6vw,34px) 0", overflow: "hidden" }}>
+        <Marquee duration={32}>
+          {BENCHMARK_SOURCES.map((src) => (
+            <span key={src} style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(18px,2.2vw,30px)", letterSpacing: "-0.02em", padding: "0 20px", whiteSpace: "nowrap", color: "color-mix(in srgb, var(--color-text) 62%, transparent)" }}>
+              {src}
+              <span style={{ color: "var(--color-accent)" }}> ·</span>
+            </span>
+          ))}
+        </Marquee>
+      </section>
+
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px,5vw,64px)" }}>
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          <div style={{ borderTop: "1px solid var(--color-divider)", paddingTop: 22 }}>
+            <Kicker label="The numbers behind it" marginBottom="0" />
+            <div style={{ gridColumn: "1 / -1", marginTop: 20 }}>
+              <h2 data-anim="" style={{ fontSize: "clamp(24px,3vw,42px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: "0 0 16px", maxWidth: "24ch" }}>Why speed is the whole argument</h2>
+              <p data-anim="" style={{ fontSize: 16, lineHeight: "28px", margin: "0 0 36px", maxWidth: "54ch", ...bodyMuted }}>Published benchmarks for lead response and business messaging, with the source against each line. These are category figures, not VantriqAI client results.</p>
+              <div data-anim="" style={{ overflowX: "auto" }}>
+                <table className="table" style={{ minWidth: 720, fontSize: 15 }}>
+                  <thead>
+                    <tr>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px", width: "46%" }}>Benchmark</th>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px" }}>Figure</th>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px" }}>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {BMK.map((r) => (
+                      <tr key={r.claim}>
+                        <td style={{ padding: "14px 10px" }}>{r.claim}</td>
+                        <td style={{ padding: "14px 10px", fontFamily: "var(--font-heading)", fontWeight: 800, whiteSpace: "nowrap", color: "var(--color-accent-700)" }}>{r.fig}</td>
+                        <td style={{ padding: "14px 10px", fontSize: 12.5, lineHeight: "19px", color: "color-mix(in srgb, var(--color-text) 62%, transparent)" }}>{r.src}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          <div style={{ borderTop: "1px solid var(--color-divider)", paddingTop: 22 }}>
+            <Kicker label="The difference" marginBottom="0" />
+            <div style={{ marginTop: 20 }}>
+              <h2 data-anim="" style={{ fontSize: "clamp(24px,3vw,42px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: "0 0 16px" }}>Not a chatbot. Not another hire.</h2>
+              <p data-anim="" style={{ fontSize: 16, lineHeight: "28px", margin: "0 0 36px", maxWidth: "52ch", ...bodyMuted }}>Compared honestly against the two things you&rsquo;re probably weighing instead.</p>
+              <div data-anim="" style={{ overflowX: "auto" }}>
+                <table className="table" style={{ minWidth: 760, fontSize: 15 }}>
+                  <thead>
+                    <tr>
+                      <th style={{ width: "22%", padding: "12px 10px" }}></th>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px" }}>Hiring staff</th>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px" }}>A generic chatbot</th>
+                      <th style={{ fontSize: 12, letterSpacing: "0.1em", padding: "12px 10px", fontFamily: "var(--font-heading)", fontWeight: 800, textTransform: "none" }}>
+                        Vantriq<span style={{ color: "var(--color-accent)" }}>AI</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {COMPARISON.map((r) => (
+                      <tr key={r.a}>
+                        <td style={{ padding: "14px 10px", ...mutedLabel }}>{r.a}</td>
+                        <td style={{ padding: "14px 10px" }}>{r.b}</td>
+                        <td style={{ padding: "14px 10px" }}>{r.c}</td>
+                        <td style={{ padding: "14px 10px", fontFamily: "var(--font-heading)", fontWeight: 800 }}>{r.d}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          <div style={{ borderTop: "1px solid var(--color-divider)", paddingTop: 22 }}>
+            <Kicker label="Under the hood" marginBottom="0" />
+            <div style={{ marginTop: 20 }}>
+              <h2 data-anim="" style={{ fontSize: "clamp(24px,3vw,42px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: "0 0 40px", maxWidth: "24ch" }}>Enterprise-grade, without the enterprise headache</h2>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: 18 }}>
+                {HOOD.map((h) => (
+                  <div key={h.n} data-anim="" style={{ background: "var(--color-bg)", padding: "28px 26px 34px" }}>
+                    <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 12, letterSpacing: "0.1em", color: "var(--color-accent)", margin: "0 0 18px" }}>{h.n}</p>
+                    <h3 style={{ fontSize: 21, lineHeight: 1.12, letterSpacing: "-0.02em", margin: "0 0 10px" }}>{h.title}</h3>
+                    <p style={{ fontSize: 15, lineHeight: "26px", margin: 0, ...bodyMuted }}>{h.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <PosterCTA
+        headline="Start with a discovery call."
         body="Fifteen minutes on how your customers message you today, and where an agent would earn its keep."
         primaryLabel="Message us on WhatsApp"
         secondaryLabel="Send a brief instead"
         secondaryHref="/contact"
       />
-
-      <Footer />
     </>
   );
 }

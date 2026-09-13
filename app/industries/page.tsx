@@ -1,141 +1,102 @@
+import PageHero from "@/components/PageHero";
+import HeroOrbitCard from "@/components/HeroOrbitCard";
+import LineReveal from "@/components/LineReveal";
 import Kicker from "@/components/Kicker";
-import CtaBand from "@/components/CtaBand";
-import Footer from "@/components/Footer";
-import IndustryTile from "@/components/IndustryTile";
+import PosterCTA from "@/components/PosterCTA";
+import SpotlightGrid, { SpotlightItem } from "@/components/SpotlightGrid";
+import { SECTORS } from "@/lib/content";
 
-const SECTORS = [
-  {
-    icon: "storefront",
-    name: "E-commerce & Retail",
-    kicker: "Catalogue, cart recovery",
-    body: "Shares products, answers sizing and stock questions, and follows up on abandoned carts before the customer buys elsewhere.",
-  },
-  {
-    icon: "buildings",
-    name: "Real Estate",
-    kicker: "Matching, site visits",
-    body: "Qualifies budget and area, matches listings to the enquiry, and books site visits straight into an agent's calendar.",
-  },
-  {
-    icon: "stethoscope",
-    name: "Healthcare",
-    kicker: "Booking, follow-up care",
-    body: "Handles appointment booking and rescheduling, sends follow-up reminders, and escalates anything clinical to your staff.",
-  },
-  {
-    icon: "graduation-cap",
-    name: "Education",
-    kicker: "Admissions, fee reminders",
-    body: "Answers admission queries at scale during intake season and reminds parents about fees and deadlines.",
-  },
-  {
-    icon: "fork-knife",
-    name: "Hospitality",
-    kicker: "Ordering, reservations",
-    body: "Takes orders and table reservations through the dinner rush, when no one is free to watch the phone.",
-  },
-  {
-    icon: "scales",
-    name: "Legal & Consulting",
-    kicker: "Intake, document collection",
-    body: "Runs first-contact intake, collects the documents a matter needs, and books the consultation.",
-  },
-  {
-    icon: "airplane-tilt",
-    name: "Travel & Tourism",
-    kicker: "Itineraries, booking status",
-    body: "Sends itineraries, answers package questions, and gives booking status without a call to the office.",
-  },
-  {
-    icon: "users-three",
-    name: "HR & Operations",
-    kicker: "Onboarding, leave requests",
-    body: "Walks new joiners through onboarding and handles routine leave and policy questions internally.",
-  },
-  {
-    icon: "megaphone",
-    name: "Marketing Agencies",
-    kicker: "Comment-to-DM, scoring",
-    body: "Turns comments into DMs, qualifies the lead, and scores it before it reaches a human on the account.",
-  },
-  {
-    icon: "truck",
-    name: "Logistics",
-    kicker: "Shipment tracking",
-    body: 'Answers "where is my order" instantly, at any volume, and flags exceptions to the team that can fix them.',
-  },
+const bodyMuted = { color: "color-mix(in srgb, var(--color-text) 78%, transparent)" };
+
+const CHANNEL_STATS = [
+  { fig: "3 bn+", body: "People on WhatsApp every month", src: "Meta, confirmed 2025" },
+  { fig: "200 m+", body: "Businesses already on WhatsApp Business", src: "Meta, 2023" },
+  { fig: "95–98%", body: "Open rate on a WhatsApp business message, against 20–25% for email", src: "Mobilesquared / Infobip · industry estimate" },
 ];
 
 export default function Industries() {
   return (
     <>
-      <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-        <section style={{ padding: "84px 0 56px" }}>
-          <Kicker label="Where it applies" />
-          <h1
-            style={{
-              fontSize: "clamp(36px,5vw,64px)",
-              lineHeight: 1.11,
-              letterSpacing: "-0.015em",
-              margin: "0 0 0 -0.06em",
-              maxWidth: "20ch",
-              color: "var(--color-hero)",
-            }}
-          >
-            Ten sectors, one platform
-          </h1>
-          <p style={{ fontSize: 17, lineHeight: "28px", maxWidth: "54ch", margin: "32px 0 0" }}>
-            The same core agent, tuned to the workflow of each sector — your catalogue, your booking
-            rules, your tone.
-          </p>
+      <PageHero
+        kicker="Where it applies"
+        heading={
+          <>
+            <LineReveal>
+              <span style={{ color: "var(--color-accent)" }}>Every</span> sector,
+            </LineReveal>
+            <LineReveal>one platform</LineReveal>
+          </>
+        }
+        body="The same core agent, tuned to the workflow of each sector — your catalogue, your booking rules, your tone."
+        maxWidthCh="16ch"
+        orbit={
+          <HeroOrbitCard label="Everywhere" delay={0.6} orbitDuration={8}>
+            <div style={{ position: "relative", width: "44%", aspectRatio: 1 }}>
+              <span aria-hidden="true" style={{ position: "absolute", left: "50%", top: "50%", width: "100%", height: "100%", margin: "-50% 0 0 -50%", borderRadius: "50%", border: "2px solid var(--color-accent)", animation: "radarping 2.2s ease-out infinite" }} />
+              <span aria-hidden="true" style={{ position: "absolute", left: "50%", top: "50%", width: "100%", height: "100%", margin: "-50% 0 0 -50%", borderRadius: "50%", border: "2px solid var(--color-accent)", animation: "radarping 2.2s ease-out infinite", animationDelay: ".7s" }} />
+              <svg width="100%" height="100%" viewBox="0 0 24 24" fill="var(--color-accent)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" /></svg>
+            </div>
+          </HeroOrbitCard>
+        }
+      />
+
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px,5vw,64px)" }}>
+        <section style={{ padding: "clamp(34px,4.4vw,58px) 0 clamp(20px,2.6vw,32px)" }}>
+          <Kicker label="Why the channel matters" />
+          <h2 data-anim="" style={{ fontSize: "clamp(24px,3vw,42px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: 0, maxWidth: "26ch" }}>
+            Whatever the sector, your customers are already messaging.
+          </h2>
         </section>
 
-        <section style={{ padding: "0 0 84px" }}>
-          <ol
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))",
-              gridAutoRows: "minmax(196px,auto)",
-              gap: 14,
-            }}
-          >
-            {SECTORS.map((sector, i) => (
-              <IndustryTile
-                key={sector.name}
-                index={i + 1}
-                icon={sector.icon}
-                name={sector.name}
-                kicker={sector.kicker}
-                body={sector.body}
-              />
+        <section style={{ padding: "0 0 clamp(38px,5vw,66px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(260px,100%),1fr))", gap: 18 }}>
+            {CHANNEL_STATS.map((s) => (
+              <div
+                key={s.body}
+                data-anim=""
+                className="hover-lift"
+                style={{ background: "var(--color-surface)", border: "1px solid var(--color-divider)", borderRadius: 28, boxShadow: "var(--shadow-sm)", padding: "clamp(26px,3.4vw,44px) clamp(20px,2.6vw,34px)", display: "flex", flexDirection: "column" }}
+              >
+                <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(34px,3.8vw,54px)", lineHeight: 1, letterSpacing: "-0.04em", margin: 0 }}>{s.fig}</p>
+                <p style={{ fontSize: 14.5, lineHeight: "23px", margin: "16px 0 22px", flex: 1, maxWidth: "30ch", ...bodyMuted }}>{s.body}</p>
+                <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 10, lineHeight: "16px", letterSpacing: "0.1em", textTransform: "uppercase", margin: 0, color: "color-mix(in srgb, var(--color-text) 50%, transparent)", paddingTop: 12, borderTop: "1px solid var(--color-divider)" }}>{s.src}</p>
+              </div>
             ))}
-          </ol>
-          <p
-            style={{
-              fontSize: 13,
-              lineHeight: "28px",
-              color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
-              margin: "24px 0 0",
-            }}
-          >
-            Not listed? The agent adapts — <a href="/contact">ask us about your workflow</a>.
-          </p>
+          </div>
         </section>
       </div>
 
-      <CtaBand
-        heading="Tell us how your business runs."
+      <section style={{ borderTop: "1px solid var(--color-divider)", borderBottom: "1px solid var(--color-divider)" }}>
+        <SpotlightGrid gridStyle={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(22px,3vw,40px) clamp(20px,5vw,64px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(300px,100%),1fr))", gap: 18 }}>
+          {SECTORS.map((s, i) => (
+            <SpotlightItem
+              key={s.name}
+              index={i}
+              className="spot-tint"
+              style={{
+                background: "var(--color-surface)",
+                padding: "clamp(26px,3vw,40px) clamp(20px,2.5vw,36px)",
+                borderRadius: 28,
+                border: "1px solid var(--color-divider)",
+                boxShadow: "var(--shadow-sm)",
+              }}
+            >
+              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--color-accent)", margin: "0 0 18px" }}>{s.kicker}</p>
+              <h2 style={{ fontSize: 24, lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 12px" }}>{s.name}</h2>
+              <p style={{ fontSize: 15, lineHeight: "26px", margin: 0, ...bodyMuted }}>{s.body}</p>
+              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 10.5, lineHeight: "16px", letterSpacing: "0.1em", textTransform: "uppercase", margin: "20px 0 0", paddingTop: 12, borderTop: "1px solid var(--color-divider)", color: "color-mix(in srgb, var(--color-text) 55%, transparent)" }}>{s.data}</p>
+            </SpotlightItem>
+          ))}
+        </SpotlightGrid>
+      </section>
+
+      <PosterCTA
+        headline="Tell us how your business runs."
         body="We configure the agent around your workflow, not the other way round."
         primaryLabel="Message us on WhatsApp"
         secondaryLabel="Request a quote"
-        secondaryHref="/pricing"
+        secondaryHref="/contact"
       />
-
-      <Footer />
     </>
   );
 }
